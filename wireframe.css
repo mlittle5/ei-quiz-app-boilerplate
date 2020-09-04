@@ -1,0 +1,57 @@
+.box {
+    list-style: none;
+    padding-left: 0;
+    background-color: lightgrey;
+    border: 2px solid black;
+}
+
+.headerBox {
+    margin-top: 50px;
+    height: 100px;
+    width: 50%;
+    position: relative;
+    left: 25%;
+    background-color: lightgrey;
+    border: 2px solid black;
+}
+.noteBox {
+    height: 200px;
+    width: 50%;
+    position: relative;
+    /* left: 25%; */
+    background-color: lightgrey;
+    border: 2px solid black;
+}
+
+.boo {
+
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+}
+
+.item {
+    flex: 1;
+    margin: 20px;
+}
+
+
+textarea {
+    height: 160px;
+  }
+label {
+    height: 160px;
+}
+
+
+@media all and (min-width: 800px) {
+    section {
+      padding: 0 10%;
+    }
+    .group {
+      flex-direction: row;
+    }
+  }
