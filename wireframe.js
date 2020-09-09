@@ -253,3 +253,8 @@ $(insE); //call the note function
 //TODO take entry from text field and then see if it is true or false
  
 //TODO insert another element using javascript that includes "correct" or "incorrect"
+
+
+//display one by one
+
+// instead of running map function, take first element and render. after answer rm from array and add next one.
