@@ -11,11 +11,15 @@ quiz-item {
 
 }
 
+h1 {
+  text-align: center;
+}
+
 .box {
   list-style: none;
   padding-left: 0;
-  background-color: lightgrey;
-  border: 2px solid black;
+  /* background-color: white; */
+  /* border: 2px solid black; */
 }
 
 .headerBox {
@@ -24,16 +28,16 @@ quiz-item {
   width: 50%;
   position: relative;
   left: 25%;
-  background-color: lightgrey;
-  border: 2px solid black;
+  /* background-color: lightgrey; */
+  /* border: 2px solid black; */
 }
 .noteBox {
   height: 200px;
   width: 50%;
   position: relative;
   /* left: 25%; */
-  background-color: lightgrey;
-  border: 2px solid black;
+  /* background-color: lightgrey; */
+  /* border: 2px solid black; */
 }
 
 .boo {
