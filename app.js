@@ -1,4 +1,5 @@
 
+
 const STORE = {
   // 5 or more questions are required
   questions: [
@@ -21,7 +22,7 @@ const STORE = {
           'F',
           'F sharp'
         ],
-        correctAnswer: 'E flat',
+        correctAnswer: 'E',
         correct: false
       },
         {
@@ -52,9 +53,9 @@ const STORE = {
         'B flat',
         'A flat',
         'G sharp',
-        'C'
+        'A'
       ],
-      correctAnswer: 'A flat'
+      correctAnswer: 'A'
     }
   ],
   quizStarted: false,
@@ -333,7 +334,7 @@ function restartEverything() {
 
 /*********** Event Handlers! ********************/
 function handleBeginning () {
-$('quiz-item').on('click', '#beginQuiz', (e) =>{
+$('.quiz-item').on('click', '#beginQuiz', (e) =>{
   event.preventDefault();
   startQuiz();
   renderQuizQuestions();
@@ -341,7 +342,7 @@ $('quiz-item').on('click', '#beginQuiz', (e) =>{
 }
 
 function handleSubmitAnswer() {
-  $('main').on('click' , '.submit-answer', (event)=>{
+  $('.quiz-item').on('click' , '.submit-answer', (event)=>{
     event.preventDefault();
     console.log('submitting answer');
     validateCorrectAnswer();
@@ -350,7 +351,7 @@ function handleSubmitAnswer() {
 }
 
 function handleNextQuestionSubmit(){
-  $('main').on('click', '.next-question', (event) => {
+  $('.quiz-item').on('click', '.next-question', (event) => {
     event.preventDefault();
     nextQuestion();
     renderQuizQuestions();
@@ -358,7 +359,7 @@ function handleNextQuestionSubmit(){
 }
 
 function handleSeeResultsSubmit(){
-  $('main').on('click', '.see-results', (event) => {
+  $('.quiz-item').on('click', '.see-results', (event) => {
     event.preventDefault();
     seeResults();
     renderQuizQuestions();
@@ -366,7 +367,7 @@ function handleSeeResultsSubmit(){
 }
 
 function handleRestartQuizSubmit(){
-  $('main').on('click', '.restart-quiz', (event) => {
+  $('.quiz-item').on('click', '.restart-quiz', (event) => {
     event.preventDefault();
     restartQuiz();
     renderQuizQuestions();
