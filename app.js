@@ -1,26 +1,18 @@
-<<<<<<< HEAD
-
-
-const STORE = {
-=======
 /**
  * Example store structure
  */
-const store = {
->>>>>>> parent of 28af614... added two functions to the app.js file
+const STORE = {
   // 5 or more questions are required
   questions: [
     {
-      question: 'What color is broccoli?',
+      question: 'What is this note?',
       answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
+        'A',
+        'B',
+        'D sharp',
+        'G'
       ],
-<<<<<<< HEAD
-      correctAnswer: 'G',
-      correct: false
+      correctAnswer: 'G'
     },
       {
         question: 'What is this note?',
@@ -30,8 +22,7 @@ const store = {
           'F',
           'F sharp'
         ],
-        correctAnswer: 'E',
-        correct: false
+        correctAnswer: 'E Flat'
       },
         {
           question: 'What is this note?',
@@ -41,8 +32,7 @@ const store = {
             'C',
             'D'
           ],
-          correctAnswer: 'A',
-          correct: false
+          correctAnswer: 'A'
         },
           {
             question: 'What is this note?',
@@ -52,8 +42,7 @@ const store = {
               'A sharp',
               'B'
             ],
-            correctAnswer: 'B',
-            correct: false
+            correctAnswer: 'B'
           },
     {
       question: 'What is the current year?',
@@ -61,39 +50,21 @@ const store = {
         'B flat',
         'A flat',
         'G sharp',
-        'A'
+        'C'
       ],
-      correctAnswer: 'A'
-=======
-      correctAnswer: 'green'
-    },
-    {
-      question: 'What is the current year?',
-      answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
-      ],
-      correctAnswer: '2019'
->>>>>>> parent of 28af614... added two functions to the app.js file
+      correctAnswer: 'A flat'
     }
   ],
   quizStarted: false,
   questionNumber: 0,
-  submittingAnswer: false,
-  score: 0,
-
-  currentQuestion: {
-    answerArray: []
-  }
+  score: 0
 };
 
 /**
  * 
  * Technical requirements:
  * 
- * Your app should include a render() function, that regenerates the view each time the STORE is updated. 
+ * Your app should include a render() function, that regenerates the view each time the store is updated. 
  * See your course material and access support for more details.
  *
  * NO additional HTML elements should be added to the index.html file.
@@ -110,46 +81,17 @@ const store = {
 
 /********** RENDER FUNCTION(S) **********/
 
-// This function conditionally replaces the contents of the <main> tag based on the state of the STORE
+// This function conditionally replaces the contents of the <main> tag based on the state of the store
 
 /********** EVENT HANDLER FUNCTIONS **********/
 
-<<<<<<< HEAD
 // These functions handle events (submit, click, etc)
 
 
-//******************** Template generator functions ********************//
-
-function questionOne() {
-  VF = Vex.Flow;
-    var div = document.getElementById("boo")
-    var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
-    
-    renderer.resize(500, 500);
-    var context = renderer.getContext();
-    context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
-    
-    var stave = new VF.Stave(200, 40, 110);
-    
-    stave.addClef("treble").addTimeSignature("4/4");
-    
-    stave.setContext(context).draw();
-    var notes = [
-      new VF.StaveNote({ keys: ["g/4"], duration: "q" })
-    ];
-    var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
-    voice.addTickables(notes);
-    
-    var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
-    
-    voice.draw(context, stave);
-}
 function generateQuizQuestion(question) {
   return `
   <header class = "group headerBox">
   <h1>What note is this?</h1>
-  <h1 class="item" id="numCorrect">Number correct:</h1>
-  <p>${STORE.score}/5</p> 
 </header> 
 <main>
   <div class="group">
@@ -159,256 +101,80 @@ function generateQuizQuestion(question) {
   <div class="item box">
       <div class="item box">
       <form>
+      <fieldset> 
       <input name="answer" type="radio" class="user-answer" value="${question.answers[0]}">
-        <label for="answer">${question.answers[0]}<br>
+        <label for="answer">${question.answers[0]}
       <input name="answer" type="radio" class="user-answer"value="${question.answers[1]}">
-        <label for="answer">${question.answers[1]}<br>
+        <label for="answer">${question.answers[1]}
       <input name="answer" type="radio" class="user-answer"value="${question.answers[2]}">
-        <label for="answer">${question.answers[2]}<br>
+        <label for="answer">${question.answers[2]}
       <input name="answer" type="radio" class="user-answer"value="${question.answers[3]}">
-        <label for="answer">${question.answers[3]}<br>
+        <label for="answer">${question.answers[3]}
        <button class="submit-button" type="button" data="${question.correctAnswer}">Submit</button>
+      </fieldset>
       </form>
        </div>
-       </div>
-       <div class ="item answer">
-       <p>placeholder</p>
       </div>  
    </div>
    </div>`;
 }
-function generateWelcomeString() {
-  return `
-<div class="welcome">
-<form>
-<p>
-Welcome to my quiz!
-</p>
 
-<button type="submit" id="beginQuiz" autofocus>Begin!</button>
-</form>
-</div>`;
-}
-function generateQuizInterface(obj) {
-  return `
-  <div class='quiz-interface'>
-      <p>Question ${obj.index} out of ${STORE.questions.length}</p>
-      <p>
-       ${obj.question.question}
-      </p>
+function generateQuizItemsString(quiz) {
+  console.log("Generating quiz element");
 
-      <form>
-      <ol type="A">
-        ${generateQuizAnswers(obj.question.answers)}
-      </ol>
-      <button type="submit" class="submit-answer">Submit Answer</button>
-      </form> 
-      <p>Score: ${STORE.score}</p>
-    </div>
-    `;
-}
-function generateAnswerResults(){
-  let answerArray = STORE.currentQuestion.answerArray;
-  const buttons = {
-    next: ' <button type="submit" class="next-question" autofocus>Next Question</button>',
-    results: '<button type="submit" class="see-results" autofocus>See Results</button>'
-  };
-
-  let correctResponse = `"${answerArray[1]}" is correct`;
-  let incorrectResponse = `${answerArray[2]} is not correct. The correct answer is<br><br>
-  "${answerArray[1]}"`;
-
-  let isLastQuestion = (STORE.questionNumber + 1) === (STORE.questions.length);
+  const items = quiz.questions.map((i) => generateQuizQuestion(i));
   
-  return `
-    <div class="answer-response">
-    <form>
-    <p>${answerArray[0] === true ? correctResponse : incorrectResponse}</p>
-    <p> Score: ${STORE.score}</p>
-   ${isLastQuestion ? buttons.results : buttons.next}
-    </form>
-    </div>
-  `;
+  return items.join("");
 }
-function generateQuizAnswers(answers){
-  let answerArray = [];
-  let indexArray = [];
-  answers.forEach(answer => {
-    answerArray.push(answer);
-    indexArray.push(answers.indexOf(answer));
-  });
-  console.log(indexArray);
-  return answerArray.map(answer => stringifyAnswerArray(answer)).join('');
+function renderQuizQuestions() {
+  // this function will be responsible for rendering the shopping list in
+  // the DOM
+  console.log('`renderQuizQuestions` ran');
+  const QuizItemsString = generateQuizItemsString(STORE);
+
+// insert that HTML into the DOM
+$('.quiz-item').html(QuizItemsString);
+}
+function displayAnswerAnswer() {
+  alert("you did it");
 }
 
-function stringifyAnswerArray(answer){
-  let questionNumber = STORE.questionNumber;
-  let name = STORE.questions[questionNumber].answers.indexOf(answer);
-  console.log(name);
+function handleQuestionSubmit() {
+// when you hit that submit button in the quiz app do something
+// handleQuestionAnswer();
+// handleNextQuestion();
 
-  return `
-    <li>
-      <div class="answer-container">
-      <input type="radio" name="answer" id="answer-${name}" data-answer="${answer}">
-      <label for="answer-${name}"> ${answer}</label>
-     
-      </div>
-    </li>
-  `;
-}
-function generateQuizResultsString(){
-  return `
-    <div class='quiz-results'>
-      <p>
-       The Quiz is over.
-         </p>
-          <p>You scored ${STORE.score} out of ${STORE.questions.length * 10}</p>            
-        <button class="restart-quiz">Restart Quiz</button>      
-    </div>   
-   ${generateImage()}  
-`;
-        }
-
-function generateImage(quizResults) {
-   return
-   console.log("I'm popping up after the quiz")
-      $('main').empty().append('<img src="https://images.unsplash.com/photo-1455577380025-4321f1e1dca7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" height="64px" width="64px" alt="River Image">')
-
- }
-
-
-//******************** Render function ********************//
-
-function renderQuizQuestions () {
-  
-  if(STORE.quizStarted === false) {
-    if(STORE.questionNumber === STORE.questions.length){
-      const quizResultsString = generateQuizResultsString();
-      const finalImage = generateImage();
-      $('quiz-item').html(quizResultsString); 
-    } else {
-      const quizWelcomeInterfaceString = generateWelcomeString();
-      $('quiz-item').html(quizWelcomeInterfaceString);
-    }
-  } else if (STORE.quizStarted === true) {
-    if(STORE.submittingAnswer === false) {
-      const quizInterfaceString = generateQuizInterface(currentQuestion());
-      $('quiz-item').html(quizInterfaceString);
-    } else if (STORE.submittingAnswer === true) {
-      const quizAnswerResponseString = generateAnswerResults();
-      $('quiz-item').html(quizAnswerResponseString);
-    }
-  } 
-}
-function startQuiz() {
-  console.log('start the quiz');
-  STORE.quizStarted = true;
-}
-
-function thisQuestion() {
-  let index = STORE.questionNumber;
-  let obj = STORE.questions[index];
-  return {
-    index: index +1,
-    question: obj
-  };
-} 
-function nextQuestion() {
-if (STORE.questionNumber < STORE.questions.length) {
-  STORE.questionNumber++;
-  STORE.submittingAnswer = false;
-  console.log(STORE.questionNumber);
-} else if (STORE.questionNumber === STORE.questions.length) {
-  STORE.quizStarted = false;
-}
-}
-
-function validateAnswers() {
-  let radios = $('input:radio[name=answer]');
-  let selectedAnswer = $('input[name="answer"]:checked').data('answer');
-  let questionNumber = STORE.questionNumber;
-  let correctAnswer = STORE.questions[questionNumber].correctAnswer;
-
-  if (radios.filter(':checked').length === 0) {
-    alert('Please answer');
-    return;
+$('.submit-button').click( (e) => {
+  e.preventDefault();
+  //alert("this is an alert");
+  let correctAnswer = $(e.currentTarget).attr('data');
+  let radioAnswer = $('input[name="answer"]:checked').value;
+  // alert(correctAnswer);
+  for (let i=0; i<$('input[name="answer"]).length; i++) {
+  if (correctAnswer === radioAnswer) {
+    alert ('you did it');
   } else {
-    STORE.submittingAnswer = true;
-    if (selectedAnswer === correctAnswer){
-    STORE.score += 1;
-    STORE.currentQuestion.answerArray = [true, correctAnswer, selectedAnswer];
-  } else {
-    STORE.currentQuestion.answerArray = [false, correctAnswer, selectedAnswer];
+    alert('you didnt do it');
   }
+  handleQuizQuestions();
 }
-}
-function finishQuiz () {
-  STORE.quizStarted = false;
-  STORE.questionNumber ++;
+}); 
+
+
+function allDone() {
+//when all questions are answered spit out a final score 
+//TODO creat a final score element 
 }
 
-function restartEverything() {
-  STORE.quizStarted = false;
-  STORE.questionNumber = 0;
-  STORE.submittingAnswer = false;
-  STORE.currentQuestion.answerArray = [];
-}
-
-/*********** Event Handlers! ********************/
-function handleBeginning () {
-$('.quiz-item').on('click', '#beginQuiz', (e) =>{
-  event.preventDefault();
-  startQuiz();
+function handleQuizQuestions() {
   renderQuizQuestions();
-});
+  handleQuestionSubmit();
 }
 
-function handleSubmitAnswer() {
-  $('.quiz-item').on('click' , '.submit-answer', (event)=>{
-    event.preventDefault();
-    console.log('submitting answer');
-    validateCorrectAnswer();
-    renderQuizQuestions();
-  });
-}
+$(handleQuizQuestions);
 
-function handleNextQuestionSubmit(){
-  $('.quiz-item').on('click', '.next-question', (event) => {
-    event.preventDefault();
-    nextQuestion();
-    renderQuizQuestions();
-  });
-}
-
-function handleSeeResultsSubmit(){
-  $('.quiz-item').on('click', '.see-results', (event) => {
-    event.preventDefault();
-    seeResults();
-    renderQuizQuestions();
-  });
-}
-
-function handleRestartQuizSubmit(){
-  $('.quiz-item').on('click', '.restart-quiz', (event) => {
-    event.preventDefault();
-    restartQuiz();
-    renderQuizQuestions();
-  });
-}
-
-
-// This function will launch all other functions after the page is loaded
-function handleQuiz (){
-  renderQuizQuestions();
-  startQuiz();
-  thisQuestion();
-  nextQuestion();
-  restartEverything();
-  handleSeeResultsSubmit();
-
-}
-
-$(handleQuiz);
-=======
-// These functions handle events (submit, click, etc)
->>>>>>> parent of 28af614... added two functions to the app.js file
+//Todo
+// figure out radio buttons
+// get the answer they clicked on (sleected button state)
+// update the score
+// 
