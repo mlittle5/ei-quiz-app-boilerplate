@@ -1,16 +1,24 @@
+<<<<<<< HEAD
 
 
 const STORE = {
+=======
+/**
+ * Example store structure
+ */
+const store = {
+>>>>>>> parent of 28af614... added two functions to the app.js file
   // 5 or more questions are required
   questions: [
     {
-      question: 'What is this note?',
+      question: 'What color is broccoli?',
       answers: [
-        'A',
-        'B',
-        'D sharp',
-        'G'
+        'red',
+        'orange',
+        'pink',
+        'green'
       ],
+<<<<<<< HEAD
       correctAnswer: 'G',
       correct: false
     },
@@ -56,6 +64,19 @@ const STORE = {
         'A'
       ],
       correctAnswer: 'A'
+=======
+      correctAnswer: 'green'
+    },
+    {
+      question: 'What is the current year?',
+      answers: [
+        '1970',
+        '2015',
+        '2019',
+        '2005'
+      ],
+      correctAnswer: '2019'
+>>>>>>> parent of 28af614... added two functions to the app.js file
     }
   ],
   quizStarted: false,
@@ -93,6 +114,7 @@ const STORE = {
 
 /********** EVENT HANDLER FUNCTIONS **********/
 
+<<<<<<< HEAD
 // These functions handle events (submit, click, etc)
 
 
@@ -387,3 +409,6 @@ function handleQuiz (){
 }
 
 $(handleQuiz);
+=======
+// These functions handle events (submit, click, etc)
+>>>>>>> parent of 28af614... added two functions to the app.js file
