@@ -1,36 +1,133 @@
-/**
- * Example store structure
- */
-// function insG () {
-//   const VF = Vex.Flow;
-//   var div = document.getElementById("boo")
-//   var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
-  
-//   renderer.resize(500, 500);
-//   var context = renderer.getContext();
-//   context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
-  
-//   var stave = new VF.Stave(200, 40, 110);
-  
-//   stave.addClef("treble").addTimeSignature("4/4");
-  
-//   stave.setContext(context).draw();
-//   var notes = [
-//     new VF.StaveNote({ keys: ["g/4"], duration: "q" })
-//   ];
-//   var voice = new VF.Voice({num_beats: 1,  beat_value: 4});
-//   voice.addTickables(notes);
-  
-//   var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
-  
-//   voice.draw(context, stave);
-//   }
+//********Vexflow functions to create the notes***************/
+
+function insG() {
+  const VF = Vex.Flow;
+  var div = document.getElementById("boo")
+  var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+
+  renderer.resize(500, 500);
+  var context = renderer.getContext();
+  // context.scale(5,5)
+  context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+
+  var stave = new VF.Stave(350, 0, 110);
+
+  stave.addClef("treble").addTimeSignature("4/4");
+
+  stave.setContext(context).draw();
+  var notes = [
+    new VF.StaveNote({ keys: ["g/4"], duration: "q" })
+  ];
+  var voice = new VF.Voice({ num_beats: 1, beat_value: 4 });
+  voice.addTickables(notes);
+
+  var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+
+  voice.draw(context, stave);
+}
+function insE() {
+  const VF = Vex.Flow;
+  var div = document.getElementById("boo")
+  var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+
+  renderer.resize(500, 500);
+  var context = renderer.getContext();
+  context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+
+  var stave = new VF.Stave(200, 40, 110);
+
+  stave.addClef("treble").addTimeSignature("4/4");
+
+  stave.setContext(context).draw();
+  var notes = [
+    new VF.StaveNote({ keys: ["e/4"], duration: "q" })
+  ];
+  var voice = new VF.Voice({ num_beats: 1, beat_value: 4 });
+  voice.addTickables(notes);
+
+  var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+
+  voice.draw(context, stave);
+}
+function insA() {
+  const VF = Vex.Flow;
+  var div = document.getElementById("boo")
+  var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+
+  renderer.resize(500, 500);
+  var context = renderer.getContext();
+  context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+
+  var stave = new VF.Stave(200, 40, 110);
+
+  stave.addClef("treble").addTimeSignature("4/4");
+
+  stave.setContext(context).draw();
+  var notes = [
+    new VF.StaveNote({ keys: ["a/4"], duration: "q" })
+  ];
+  var voice = new VF.Voice({ num_beats: 1, beat_value: 4 });
+  voice.addTickables(notes);
+
+  var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+
+  voice.draw(context, stave);
+}
+function insB() {
+  const VF = Vex.Flow;
+  var div = document.getElementById("boo")
+  var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+
+  renderer.resize(500, 500);
+  var context = renderer.getContext();
+  context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+
+  var stave = new VF.Stave(200, 40, 110);
+
+  stave.addClef("treble").addTimeSignature("4/4");
+
+  stave.setContext(context).draw();
+  var notes = [
+    new VF.StaveNote({ keys: ["b/4"], duration: "q" })
+  ];
+  var voice = new VF.Voice({ num_beats: 1, beat_value: 4 });
+  voice.addTickables(notes);
+
+  var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+
+  voice.draw(context, stave);
+}
+function insC() {
+  const VF = Vex.Flow;
+  var div = document.getElementById("boo")
+  var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+
+  renderer.resize(500, 500);
+  var context = renderer.getContext();
+  context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+
+  var stave = new VF.Stave(200, 40, 110);
+
+  stave.addClef("treble").addTimeSignature("4/4");
+
+  stave.setContext(context).draw();
+  var notes = [
+    new VF.StaveNote({ keys: ["c/4"], duration: "q" })
+  ];
+  var voice = new VF.Voice({ num_beats: 1, beat_value: 4 });
+  voice.addTickables(notes);
+
+  var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+
+  voice.draw(context, stave);
+}
+/********** STORE  **********/
 
 const STORE = {
   // 5 or more questions are required
   questions: [
     {
-      question: 'g.png',
+      renderNote: insG,
       answers: [
         'A',
         'B',
@@ -40,17 +137,17 @@ const STORE = {
       correctAnswer: 'G'
     },
     {
-      question: 'What is this note?',
+      renderNote: insE,
       answers: [
         'E',
         'E flat',
         'F',
         'F sharp'
       ],
-      correctAnswer: 'E Flat'
+      correctAnswer: 'E'
     },
     {
-      question: 'What is this note?',
+      renderNote: insA,
       answers: [
         'A',
         'B',
@@ -60,7 +157,7 @@ const STORE = {
       correctAnswer: 'A'
     },
     {
-      question: 'What is this note?',
+      renderNote: insB,
       answers: [
         'F sharp',
         'G',
@@ -70,17 +167,17 @@ const STORE = {
       correctAnswer: 'B'
     },
     {
-      question: 'What is the current year?',
+      renderNote: insC,
       answers: [
         'B flat',
         'A flat',
         'G sharp',
         'C'
       ],
-      correctAnswer: 'A flat'
+      correctAnswer: 'C'
     }
   ],
-  quizStarted: false,
+  quizStarted: 0,
   questionNumber: 0,
   score: 0
 };
@@ -112,18 +209,17 @@ const STORE = {
 
 // These functions handle events (submit, click, etc)
 
-
+/********** TEMPLATE GENERATION FUNCTIONS **********/
 
 function generateQuizQuestion(question) {
   return `
-  <header class = "group headerBox">
+  <header class = "headerBox">
   <h1>What note is this?</h1>
 </header> 
 <main>
   <div class="group">
   <div class ="item noteBox">
    <div id="boo"></div>
-   <img href="images/g.png">
   </div>
   <div class="item box">
       <div class="item box">
@@ -131,23 +227,39 @@ function generateQuizQuestion(question) {
       <fieldset> 
       <input name="answer" type="radio" class="user-answer" value="${question.answers[0]}">
         <label for="answer">${question.answers[0]}
+        <br>
       <input name="answer" type="radio" class="user-answer" value="${question.answers[1]}">
         <label for="answer">${question.answers[1]}
+        <br>
       <input name="answer" type="radio" class="user-answer" value="${question.answers[2]}">
         <label for="answer">${question.answers[2]}
+        <br>
       <input name="answer" type="radio" class="user-answer" value="${question.answers[3]}">
         <label for="answer">${question.answers[3]}
+        <br>
        <button class="submit-button" type="button" data="${question.correctAnswer}">Submit</button>
       </fieldset>
       </form>
        </div>
       </div>
-      <section class="item hidden answer-box">
-      <h2>placeholder<h2>
-      </section>
    </div>
    </div>`;
 }
+
+function endHtml() {
+  return `
+  <h1>You did it!</h1>
+  <h1>your score was ${STORE.score}<h1>
+  <button class="end-button" type="button">Refresh</button>`
+}
+
+// function startHtml() {
+//   return `
+//   <h1>Start the quiz!<h1>
+//   <button class="start-button" type="button">Start!</button>`
+// }
+
+/********** RENDER FUNCTION(S) **********/
 
 function generateQuizItemsString(quiz) {
   console.log("Generating quiz element");
@@ -158,47 +270,71 @@ function generateQuizItemsString(quiz) {
   return question;
 }
 function renderQuizQuestions() {
-  // this function will be responsible for rendering the shopping list in
-  // the DOM
+  if (STORE.quizStarted === false) {
+    startHtml
+  }
   console.log('`renderQuizQuestions` ran');
   const QuizItemsString = generateQuizItemsString(STORE);
-
-  // insert that HTML into the DOM
   $('.quiz-item').html(QuizItemsString);
+  let currentQuestion = STORE.questions[STORE.questionNumber];
+  currentQuestion.renderNote();
 }
 function displayAnswerAnswer() {
   alert("you did it");
 }
+// function startQuiz() {
+//   STORE.quizStarted > 0;
+//   renderQuizQuestions();
+// }
+
+/********** EVENT HANDLERS **********/
+
+// function handleStart() {
+//   $('.start-button').click(e => {
+//     STORE.quizStarted += 1;
+//     handleQuizQuestions();
+//   });
+// }
+function handleRefresh() {
+  $('.end-button').click(e => {
+    alert('quiz is over. Refreshing now!');
+    STORE.questionNumber = 0;
+    STORE.score = 0;
+    handleQuizQuestions();
+  });
+}
 
 function handleQuestionSubmit() {
   // when you hit that submit button in the quiz app do something
-  // handleQuestionAnswer();
-  // handleNextQuestion();
-
   $('.submit-button').click((e) => {
     e.preventDefault();
     //alert("this is an alert");
     let correctAnswer = $(e.currentTarget).attr('data');
     let radioAnswer = $('input[name=answer]:checked', '#questionForm').val()
     if (correctAnswer === radioAnswer) {
-      $('.answer-box').html(`<p>Correct!</p>`);
+      // $('.answer-box').html(`<p>Correct!</p>`);
+      alert("Correct!");
       console.log("done");
       //$('#answer-box').removeClass('hidden');
       STORE.score += 1;
     } else {
-      $('.answer-box').html(`Incorrect. The correct answer is ${correctAnswer}`);
-      //$('#answer-box').removeClass('hidden');
+      let question = STORE.questions[STORE.questionNumber];
+      let correctAnswer = question.correctAnswer;
+      alert(`Incorrect. The correct answer is ${correctAnswer}`);
     }
     STORE.questionNumber += 1;
+    if (STORE.questionNumber > 4) {
+      $('.quiz-item').html(endHtml());
+      handleRefresh();
+      return;
+    }
+    // if (STORE.quizStarted > 1) {
+    //   $('.quiz-item').html(startHtml());
+    //   handleStart();
+    //   return;
+    // }
     handleQuizQuestions();
-    // alert(correctAnswer);
-    // handleQuizQuestions();
   });
-}
-
-function allDone() {
-  //when all questions are answered spit out a final score 
-  //TODO creat a final score element 
 }
 
 function handleQuizQuestions() {
@@ -208,8 +344,3 @@ function handleQuizQuestions() {
 
 $(handleQuizQuestions);
 
-//Todo
-// figure out radio buttons
-// get the answer they clicked on (selected button state)
-// update the score
-// 
