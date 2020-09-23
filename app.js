@@ -5,12 +5,12 @@ function insG() {
   var div = document.getElementById("boo")
   var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
-  renderer.resize(500, 500);
+  renderer.resize(150, 150);
   var context = renderer.getContext();
   // context.scale(5,5)
   context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 
-  var stave = new VF.Stave(350, 0, 110);
+  var stave = new VF.Stave(50, 0, 110);
 
   stave.addClef("treble").addTimeSignature("4/4");
 
@@ -30,11 +30,11 @@ function insE() {
   var div = document.getElementById("boo")
   var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
-  renderer.resize(500, 500);
+  renderer.resize(150, 150);
   var context = renderer.getContext();
   context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 
-  var stave = new VF.Stave(200, 40, 110);
+  var stave = new VF.Stave(50, 0, 110);
 
   stave.addClef("treble").addTimeSignature("4/4");
 
@@ -54,11 +54,11 @@ function insA() {
   var div = document.getElementById("boo")
   var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
-  renderer.resize(500, 500);
+  renderer.resize(150, 150);
   var context = renderer.getContext();
   context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 
-  var stave = new VF.Stave(200, 40, 110);
+  var stave = new VF.Stave(50, 0, 110);
 
   stave.addClef("treble").addTimeSignature("4/4");
 
@@ -78,11 +78,11 @@ function insB() {
   var div = document.getElementById("boo")
   var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
-  renderer.resize(500, 500);
+  renderer.resize(150, 150);
   var context = renderer.getContext();
   context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 
-  var stave = new VF.Stave(200, 40, 110);
+  var stave = new VF.Stave(50, 0, 110);
 
   stave.addClef("treble").addTimeSignature("4/4");
 
@@ -102,11 +102,11 @@ function insC() {
   var div = document.getElementById("boo")
   var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
-  renderer.resize(500, 500);
+  renderer.resize(150, 150);
   var context = renderer.getContext();
   context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 
-  var stave = new VF.Stave(200, 40, 110);
+  var stave = new VF.Stave(50, 0, 110);
 
   stave.addClef("treble").addTimeSignature("4/4");
 
@@ -177,8 +177,9 @@ const STORE = {
       correctAnswer: 'C'
     }
   ],
-  quizStarted: 0,
+  quizStarted: false,
   questionNumber: 0,
+  isCorrect: "incorrect",
   score: 0
 };
 
@@ -215,6 +216,7 @@ function generateQuizQuestion(question) {
   return `
   <header class = "headerBox">
   <h1>What note is this?</h1>
+  <h1>Question ${STORE.questionNumber + 1}/5<h1>
 </header> 
 <main>
   <div class="group">
@@ -242,6 +244,9 @@ function generateQuizQuestion(question) {
       </form>
        </div>
       </div>
+      <div class="answer-box">
+      </div>
+      
    </div>
    </div>`;
 }
@@ -270,9 +275,6 @@ function generateQuizItemsString(quiz) {
   return question;
 }
 function renderQuizQuestions() {
-  if (STORE.quizStarted === false) {
-    startHtml
-  }
   console.log('`renderQuizQuestions` ran');
   const QuizItemsString = generateQuizItemsString(STORE);
   $('.quiz-item').html(QuizItemsString);
@@ -281,6 +283,38 @@ function renderQuizQuestions() {
 }
 function displayAnswerAnswer() {
   alert("you did it");
+}
+function renderImage(){
+  if (STORE.isCorrect === "correct") {
+    return `<img src="images/checkmark-16.png">`
+  } else {
+    return `<img src="images/x-mark-16.png">`
+  }
+}
+function renderResults() {
+  $('.answer-box').html(`
+  <p>${STORE.isCorrect}</p>
+  <button type="button" class="next">Next</button>`);
+  $('.next').click(e => {
+    if (STORE.questionNumber > 4) {
+      $('.quiz-item').html(endHtml());
+      handleRefresh();
+      return;
+    }
+    handleQuizQuestions();
+  })
+
+}
+function renderStart() {
+  $('.quiz-item').html(`
+  <section class="start-box">
+  <h1>Welcome!</h1>
+  <h2>This is a quiz that will test your note naming skills.</h2>
+  <button type="button" class="start">Start</button>
+  </section>`);
+  $('.start').click(e => {
+    handleQuizQuestions();
+  })
 }
 // function startQuiz() {
 //   STORE.quizStarted > 0;
@@ -295,9 +329,9 @@ function displayAnswerAnswer() {
 //     handleQuizQuestions();
 //   });
 // }
+
 function handleRefresh() {
   $('.end-button').click(e => {
-    alert('quiz is over. Refreshing now!');
     STORE.questionNumber = 0;
     STORE.score = 0;
     handleQuizQuestions();
@@ -310,37 +344,36 @@ function handleQuestionSubmit() {
     e.preventDefault();
     //alert("this is an alert");
     let correctAnswer = $(e.currentTarget).attr('data');
-    let radioAnswer = $('input[name=answer]:checked', '#questionForm').val()
+    let radioAnswer = $('input[name=answer]:checked', '#questionForm').val();
+    if (radioAnswer === undefined) {
+      return;
+    }
     if (correctAnswer === radioAnswer) {
       // $('.answer-box').html(`<p>Correct!</p>`);
-      alert("Correct!");
+      STORE.isCorrect = "correct";
       console.log("done");
       //$('#answer-box').removeClass('hidden');
       STORE.score += 1;
     } else {
       let question = STORE.questions[STORE.questionNumber];
       let correctAnswer = question.correctAnswer;
-      alert(`Incorrect. The correct answer is ${correctAnswer}`);
+      STORE.isCorrect = `Incorrect. <img src="images/x-mark-16.png"><br> The correct answer is ${correctAnswer}`;
     }
     STORE.questionNumber += 1;
-    if (STORE.questionNumber > 4) {
-      $('.quiz-item').html(endHtml());
-      handleRefresh();
-      return;
-    }
+    renderResults();
     // if (STORE.quizStarted > 1) {
     //   $('.quiz-item').html(startHtml());
     //   handleStart();
     //   return;
     // }
-    handleQuizQuestions();
   });
 }
+
 
 function handleQuizQuestions() {
   renderQuizQuestions();
   handleQuestionSubmit();
 }
 
-$(handleQuizQuestions);
+$(renderStart);
 

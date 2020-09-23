@@ -11,6 +11,13 @@
   background-image: url(images/pngguru.com.png);
 
 } */
+.start-box{
+  text-align: center;
+}
+.answer-box{
+  padding-right: 100px;
+  padding-left: 100px;
+}
 
 button {
   text-align: center;
@@ -49,9 +56,7 @@ h1 {
 }
 
 .boo {
-height: 200px;
-  width: 50%;
-  position: relative;
+padding-right: 200px;
 }
 
 .group {
