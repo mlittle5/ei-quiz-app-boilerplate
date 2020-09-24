@@ -301,6 +301,7 @@ function renderResults() {
       handleRefresh();
       return;
     }
+
     handleQuizQuestions();
   })
 
@@ -343,6 +344,7 @@ function handleQuestionSubmit() {
   $('.submit-button').click((e) => {
     e.preventDefault();
     //alert("this is an alert");
+    $('.submit-button').addClass("hidden")
     let correctAnswer = $(e.currentTarget).attr('data');
     let radioAnswer = $('input[name=answer]:checked', '#questionForm').val();
     if (radioAnswer === undefined) {
